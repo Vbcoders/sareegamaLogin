@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+       <meta name="viewport" content="width=divice-width initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<head>
+       <script src="https://kit.fontawesome.com/06b45a7278.js" crossorigin="anonymous"></script>
+  <style>
+    /* ... CSS styles ... */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <div id="login-form">
+      <button onclick="loginWithGoogle()"><img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-google-icon-logo-png-transparent-svg-vector-bie-supply-14.png"><p>Google</p></button>
+   <br><br>
+           <button id="btn" onclick="phone()"><i class="fa-solid fa-phone"></i><b>Phone Login</b></button>
+         </div>
+    <div class="error-message" id="login-error"></div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <script>
+         function phone(){
+                window.location.href="PhoneAuth.html";
+         }
+    // Initialize Firebase
+    var firebaseConfig = {
+       apiKey: "AIzaSyBEw7edw-jRq47N_d1fJUvBSVnROJ6eCcE",
+  authDomain: "messanger-817c9.firebaseapp.com",
+  databaseURL: "https://messanger-817c9-default-rtdb.firebaseio.com",
+  projectId: "messanger-817c9",
+  storageBucket: "messanger-817c9.appspot.com",
+  messagingSenderId: "678307855723",
+  appId: "1:678307855723:web:ac21ee338a71dd34f9602e",
+  measurementId: "G-37SG00MKXC"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Initialize the Google Sign-In API
+    gapi.load('auth2', function() {
+      gapi.auth2.init({
+        client_id: 'YOUR_CLIENT_ID'
+      });
+    });
+
+    // Function to handle Google login
+    function loginWithGoogle() {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider)
+        .then(function(result) {
+          // Get the signed-in user
+          var user = result.user;
+
+          // Get the additional user info
+          var additionalUserInfo = result.additionalUserInfo;
+          var profilePicUrl = user.photoURL;
+          // Retrieve the user's name from additional user info
+          var userName = additionalUserInfo.profile.name;
+               localStorage.setItem('profilePicUrl', profilePicUrl);
+              localStorage.setItem('name', userName);
+          // Redirect to another page
+         window.location.href='chat.html';
+        })
+        .catch(function(error) {
+          // Display error message
+          document.getElementById('login-error'),innerText=error;
+        });
+    }
+  </script>
+  <style>
+    body{
+        box-sizing: border-box;
+        width: 100%;
+    }
+    #btn{
+      background-color: lightslategrey;
+    }
+     i,b{
+         display: inline;
+        margin: 0px;
+         }
+    i{
+        width: 25px;
+        float: left;
+        display: flex; 
+        color: white; 
+        font-size: 25px;
+        margin: 10px;
+                }
+      b{
+        color: white;
+        font-size: 20px;
+        margin:10px auto;
+        display: flex;
+     }
+    img{
+        width: 25px;
+        float: left;
+        display: flex;
+    }
+    p{
+        color: blue;
+        font-size: 20px;
+        margin: 5px;
+       display: flex;
+    }
+    img,p{
+        display: inline;
+        margin: 0px;
+    }
+    #login-error{
+        color: red;
+        font-size: 15px;
+        font-weight: 800;
+        margin: 10px;
+    }
+    .container{
+        margin: 0px auto;
+        width: 85%;
+        text-align: center;
+        margin-top: 50%;
+        border-radius: 20px;
+        padding: 20px;
+        background-color: whitesmoke;
+        box-shadow: 2px 2px 12px black;
+    }
+    h2{
+        font-size: 30px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: 800;
+        color: royalblue;
+    }
+    button{
+        width: 50%;
+        padding: 5px;
+        background-color:white;
+        border: none;
+        border-radius: 30px;
+    }
+    button:hover{
+        cursor: pointer;
+        box-shadow: 2px 2px 12px black;
+    }
+    h3{
+        text-align: center;
+        color: grey;
+        opacity: 50%;
+    }
+  </style>
+  <div>
+    <h3>Vbcoders</h3>
+  </div>
+</body>
+</html>
