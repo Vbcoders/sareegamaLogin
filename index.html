@@ -13,7 +13,6 @@
     <div id="login-form">
       <button onclick="loginWithGoogle()"><img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-google-icon-logo-png-transparent-svg-vector-bie-supply-14.png"><p>Google</p></button>
    <br><br>
-           <button id="btn" onclick="phone()"><i class="fa-solid fa-phone"></i><b>Phone Login</b></button>
          </div>
     <div class="error-message" id="login-error"></div>
   </div>
@@ -22,19 +21,14 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   <script>
-         function phone(){
-                window.location.href="PhoneAuth.html";
-         }
     // Initialize Firebase
     var firebaseConfig = {
-       apiKey: "AIzaSyBEw7edw-jRq47N_d1fJUvBSVnROJ6eCcE",
-  authDomain: "messanger-817c9.firebaseapp.com",
-  databaseURL: "https://messanger-817c9-default-rtdb.firebaseio.com",
-  projectId: "messanger-817c9",
-  storageBucket: "messanger-817c9.appspot.com",
-  messagingSenderId: "678307855723",
-  appId: "1:678307855723:web:ac21ee338a71dd34f9602e",
-  measurementId: "G-37SG00MKXC"
+         apiKey: "AIzaSyD5gmm5rLhc-wyJVO2h1Ofr6n9Ek5UJLWg",
+  authDomain: "sareegamamusic-e9f17.firebaseapp.com",
+  projectId: "sareegamamusic-e9f17",
+  storageBucket: "sareegamamusic-e9f17.appspot.com",
+  messagingSenderId: "560462859875",
+  appId: "1:560462859875:web:78c18fc9d8e8e80f38f256"
     };
     firebase.initializeApp(firebaseConfig);
 
@@ -61,7 +55,7 @@
                localStorage.setItem('profilePicUrl', profilePicUrl);
               localStorage.setItem('name', userName);
           // Redirect to another page
-         window.location.href='chat.html';
+         window.location.href='google.html';
         })
         .catch(function(error) {
           // Display error message
